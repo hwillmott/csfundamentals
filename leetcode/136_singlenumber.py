@@ -4,10 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nums = sorted(nums)
-        i = 1
-        while i < len(nums):
-            if nums[i-1] != nums[i]:
-                return nums[i-1]
-            i = i + 2
-        return nums[-1]
+        result = 0
+        for i in range(len(nums)):
+            result ^= nums[i]
+        return result
