@@ -28,8 +28,3 @@ class Solution(object):
             return s[mins:mins+minl]
         return ""
         
-            
-            
-        
-        
-        
