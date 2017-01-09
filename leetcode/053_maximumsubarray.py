@@ -4,14 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        length = len(nums)
-        dp = [0] * length
-        dp[0] = nums[0]
-        maximum = dp[0]
-        for i in range(1,length):
-            if dp[i-1] > 0:
-                dp[i] = nums[i] + dp[i-1]
+        if nums is None or len(nums) == 0: return -1
+        last = nums[0]
+        m = last
+        for i in range(1,len(nums)):
+            if last > 0:
+                last = last + nums[i]
             else:
-                dp[i] = nums[i]
-            maximum = max(maximum, dp[i])
-        return maximum
+                last = nums[i]
+            if last > m:
+                m = last
+        return m
+                
