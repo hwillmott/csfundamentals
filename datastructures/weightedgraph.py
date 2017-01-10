@@ -14,6 +14,7 @@ class WeightedGraph:
         self.graph[v1][v2] = weight
         self.graph[v2][v1] = weight
 
+    # shortest path, O(V^2) where V is number of vertices
     def dijkstra(self, source):
         unvisited = {node: None for node in self.graph.keys()}
         visited = {}
@@ -36,6 +37,7 @@ class WeightedGraph:
             curr, currdist = sorted(candidates, key=lambda x: x[1])[0]
         print(visited)
 
+    # minimum spanning tree
     def prim(self, start):
         mst = WeightedGraph(vertices=self.graph.keys())
         visited = set()
