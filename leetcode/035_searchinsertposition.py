@@ -5,19 +5,11 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        if len(nums) == 0:
+        if len(nums) == 0 or nums[0] >= target:
             return 0
-        
-        top = len(nums) - 1
-        bottom = 0
-        
-        while top >= bottom:
-            middle = top - (top - bottom) / 2
-            if nums[middle] == target:
-                return middle
-            elif nums[middle] > target:
-                top = middle - 1
-            else:
-                bottom = middle + 1
-                
-        return bottom
+        r = 1
+        while r < len(nums):
+            if nums[r] >= target:
+                return r
+            r += 1
+        return r

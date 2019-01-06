@@ -15,9 +15,9 @@ class Solution(object):
             for i in range(min(len(w1),len(w2))):
                 if w1[i] != w2[i]:
                     succ = set()
-                    if w1[i] in successors:
+                    if w1[i] in successors: # if this letter in word 1 already has successors
                         succ = successors[w1[i]]
-                    if w2[i] not in succ:
+                    if w2[i] not in succ: # if this letter in word 2 is not in the existing successors for this letter in word 1
                         succ.add(w2[i])
                         successors[w1[i]] = succ
                         predecessors[w2[i]] += 1
