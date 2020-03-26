@@ -1,26 +1,23 @@
 class Solution(object):
+    
     def longestPalindrome(self, s):
         """
         :type s: str
         :rtype: str
         """
-        result = ""
-        currLen = 0
-        for i in range(0, len(s)):
-            if self.isPali(s, i - currLen - 1, i):
-                result = s[i - currLen - 1: i + 1]
-                currLen = currLen + 2
-            elif self.isPali(s, i - currLen, i):
-                result = s[i - currLen: i + 1]
-                currLen = currLen + 1
-        return result
-            
-    def isPali(self, s, start, end):
-        if start < 0:
-            return False
-        while start < end:
-            if s[start] != s[end]:
-                return False
-            start += 1
-            end -= 1
-        return True
+        longest = ""
+        temp = ""
+        for i in range(len(s)):
+            temp = self.helper(s, i, i) # odd length palindromes
+            if len(temp) > len(longest):
+                longest = temp
+            temp = self.helper(s, i, i+1) # even length palindromes
+            if len(temp) > len(longest):
+                longest = temp
+        return longest 
+    
+    def helper(self, s, l, r):
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1:r]
