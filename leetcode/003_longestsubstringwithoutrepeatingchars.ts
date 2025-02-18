@@ -23,3 +23,29 @@ function lengthOfLongestSubstring(s: string): number {
 
     return maxLen
 };
+
+function lengthOfLongestSubstring(s: string): number {
+    if (s.length <= 1) return s.length
+    let left = 0
+    let right = 0
+    const counts: {[id: string] : number} = {}
+    let longest = 1
+    counts[s[0]] = 1
+
+    while (right < s.length - 1) {
+        // move right index up
+        right = right + 1
+        counts[s[right]] = counts[s[right]] ? counts[s[right]] + 1 : 1
+
+        // if duplicates move left index until not true
+        while (counts[s[right]] > 1) {
+            counts[s[left]] -= 1
+            left += 1
+        }
+
+        if (right - left + 1 > longest) {
+            longest = right - left + 1
+        } 
+    }
+    return longest
+};
