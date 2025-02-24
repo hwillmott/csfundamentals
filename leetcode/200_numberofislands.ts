@@ -19,3 +19,28 @@ function numIslands(grid: string[][]): number {
     }
     return totalIslands
 };
+
+function numIslands(grid: string[][]): number {
+    let num = 0
+    for (let row = 0; row < grid.length; row++) {
+        for (let col = 0; col < grid[0].length; col++) {
+            if (grid[row][col] === '1') {
+                num += 1
+                let q = [[row, col]] 
+                while (q.length > 0) {
+                    const coords = q.shift()
+                    const x = coords[0] 
+                    const y = coords[1]
+                    if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] === '1') {
+                        grid[x][y] = '0'
+                        q.push([x+1, y])
+                        q.push([x, y+1])
+                        q.push([x-1,y])
+                        q.push([x, y-1])
+                    }
+                }
+            }
+        }
+    }
+    return num
+};
