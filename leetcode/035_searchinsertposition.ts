@@ -18,3 +18,20 @@ function searchInsert(nums: number[], target: number): number {
     } 
     return left
 };
+
+function searchInsert(nums: number[], target: number): number {
+    let l = 0
+    let r = nums.length - 1
+    while (l < r) {
+        const m = Math.floor((r-l)/2 + l)
+        console.log({l, m, r, num: nums[m]})
+        if (nums[m] > target) {
+            r = m - 1
+        } else if (nums[m] === target) {
+            return m
+        } else {
+            l = m + 1
+        }
+    }
+    return nums[l] < target ? l + 1 : l
+};
